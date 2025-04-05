@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ランダム2択アプリ</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            margin-top: 50px;
+        }
+
+        input {
+            font-size: 18px;
+            padding: 8px;
+            margin: 10px;
+            width: 200px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 24px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>2択のうち、どっちにする？</h1>
+
+    <input id="option1" type="text" placeholder="選択肢Aを入力">
+    <br>
+    <input id="option2" type="text" placeholder="選択肢Bを入力">
+    <br>
+    <button onclick="makeRandomChoice()">ジャッジメント！</button>
+
+    <p id="result"></p>
+
+    <script>
+        function makeRandomChoice() {
+            const option1 = document.getElementById("option1").value.trim();
+            const option2 = document.getElementById("option2").value.trim();
+
+            if (option1 === "" || option2 === "") {
+                document.getElementById("result").innerText = "両方の選択肢を入力してください！";
+                return;
+            }
+
+            // 「判定中…」を表示
+
+            document.getElementById("result").innerText = "判定中…";
+
+
+
+            // 5秒後に結果を表示
+
+            setTimeout(() => {
+
+                const choices = [option1, option2];
+
+                const randomIndex = Math.floor(Math.random() * choices.length);
+
+                const result = choices[randomIndex];
+
+                document.getElementById("result").innerText = result + " が選ばれました！";
+
+            }, 3000); // 3000ミリ秒 = 3秒
+
+        }
+
+    </script>
+
+</body>
+
+</html>
